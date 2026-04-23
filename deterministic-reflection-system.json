@@ -1,0 +1,292 @@
+{
+  "version": "2.0.0",
+  "name": "Deterministic Reflection System",
+  "startNode": "START",
+  "nodes": {
+    "START": {
+      "type": "start",
+      "next": "A1_Q1",
+      "signals": ["start"]
+    },
+    "A1_Q1": {
+      "type": "question",
+      "axis": "axis1",
+      "axisName": "Locus",
+      "prompt": "Axis 1 Locus: Which locus is most present?",
+      "signals": ["axis1:locus"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Victim framing",
+          "next": "A1_Q2",
+          "signals": ["axis1:locus:victim", "axis1:internal"]
+        },
+        {
+          "id": "2",
+          "label": "Balanced framing",
+          "next": "A1_Q2",
+          "signals": ["axis1:locus:balanced", "axis1:internal"]
+        },
+        {
+          "id": "3",
+          "label": "Victor framing",
+          "next": "A1_Q2",
+          "signals": ["axis1:locus:victor", "axis1:external"]
+        }
+      ]
+    },
+    "A1_Q2": {
+      "type": "question",
+      "axis": "axis1",
+      "axisName": "Locus",
+      "prompt": "Axis 1 Locus: How stable is that locus?",
+      "signals": ["axis1:locus"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Consistently victim-leaning",
+          "next": "A1_REFLECT",
+          "signals": ["axis1:locus:victim", "axis1:internal", "axis1:stable"]
+        },
+        {
+          "id": "2",
+          "label": "Shifts between victim and victor",
+          "next": "A1_REFLECT",
+          "signals": ["axis1:locus:balanced", "axis1:internal", "axis1:shift"]
+        },
+        {
+          "id": "3",
+          "label": "Consistently victor-leaning",
+          "next": "A1_REFLECT",
+          "signals": ["axis1:locus:victor", "axis1:external", "axis1:stable"]
+        }
+      ]
+    },
+    "A1_REFLECT": {
+      "type": "reflection",
+      "axis": "axis1",
+      "axisName": "Locus",
+      "prompt": "Axis 1 Reflection: Confirm the locus signal before moving forward.",
+      "signals": ["axis1:reflection"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Lock victim interpretation",
+          "next": "BRIDGE1",
+          "signals": ["axis1:locus:victim", "axis1:reflection:lock"]
+        },
+        {
+          "id": "2",
+          "label": "Lock balanced interpretation",
+          "next": "BRIDGE1",
+          "signals": ["axis1:locus:balanced", "axis1:reflection:lock"]
+        },
+        {
+          "id": "3",
+          "label": "Lock victor interpretation",
+          "next": "BRIDGE1",
+          "signals": ["axis1:locus:victor", "axis1:reflection:lock"]
+        }
+      ]
+    },
+    "BRIDGE1": {
+      "type": "bridge",
+      "fromAxis": "axis1",
+      "toAxis": "axis2",
+      "next": "A2_Q1",
+      "signals": ["bridge:axis1-to-axis2"]
+    },
+    "A2_Q1": {
+      "type": "question",
+      "axis": "axis2",
+      "axisName": "Orientation",
+      "prompt": "Axis 2 Orientation: Which orientation is most present?",
+      "signals": ["axis2:orientation"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Contribution",
+          "next": "A2_Q2",
+          "signals": ["axis2:orientation:contribution", "axis2:outward"]
+        },
+        {
+          "id": "2",
+          "label": "Balanced",
+          "next": "A2_Q2",
+          "signals": ["axis2:orientation:balanced", "axis2:outward"]
+        },
+        {
+          "id": "3",
+          "label": "Entitlement",
+          "next": "A2_Q2",
+          "signals": ["axis2:orientation:entitlement", "axis2:inward"]
+        }
+      ]
+    },
+    "A2_Q2": {
+      "type": "question",
+      "axis": "axis2",
+      "axisName": "Orientation",
+      "prompt": "Axis 2 Orientation: How durable is the orientation signal?",
+      "signals": ["axis2:orientation"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Consistently contribution-based",
+          "next": "A2_REFLECT",
+          "signals": ["axis2:orientation:contribution", "axis2:stable"]
+        },
+        {
+          "id": "2",
+          "label": "Switches between contribution and entitlement",
+          "next": "A2_REFLECT",
+          "signals": ["axis2:orientation:balanced", "axis2:shift"]
+        },
+        {
+          "id": "3",
+          "label": "Consistently entitlement-based",
+          "next": "A2_REFLECT",
+          "signals": ["axis2:orientation:entitlement", "axis2:stable"]
+        }
+      ]
+    },
+    "A2_REFLECT": {
+      "type": "reflection",
+      "axis": "axis2",
+      "axisName": "Orientation",
+      "prompt": "Axis 2 Reflection: Confirm the orientation signal before moving forward.",
+      "signals": ["axis2:reflection"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Lock contribution interpretation",
+          "next": "BRIDGE2",
+          "signals": ["axis2:orientation:contribution", "axis2:reflection:lock"]
+        },
+        {
+          "id": "2",
+          "label": "Lock balanced interpretation",
+          "next": "BRIDGE2",
+          "signals": ["axis2:orientation:balanced", "axis2:reflection:lock"]
+        },
+        {
+          "id": "3",
+          "label": "Lock entitlement interpretation",
+          "next": "BRIDGE2",
+          "signals": ["axis2:orientation:entitlement", "axis2:reflection:lock"]
+        }
+      ]
+    },
+    "BRIDGE2": {
+      "type": "bridge",
+      "fromAxis": "axis2",
+      "toAxis": "axis3",
+      "next": "A3_Q1",
+      "signals": ["bridge:axis2-to-axis3"]
+    },
+    "A3_Q1": {
+      "type": "question",
+      "axis": "axis3",
+      "axisName": "Radius",
+      "prompt": "Axis 3 Radius: What is the radius of impact?",
+      "signals": ["axis3:radius"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Self",
+          "next": "A3_Q2",
+          "signals": ["axis3:radius:self", "axis3:contained"]
+        },
+        {
+          "id": "2",
+          "label": "Mixed",
+          "next": "A3_Q2",
+          "signals": ["axis3:radius:mixed", "axis3:contained"]
+        },
+        {
+          "id": "3",
+          "label": "Others",
+          "next": "A3_Q2",
+          "signals": ["axis3:radius:others", "axis3:extended"]
+        }
+      ]
+    },
+    "A3_Q2": {
+      "type": "question",
+      "axis": "axis3",
+      "axisName": "Radius",
+      "prompt": "Axis 3 Radius: Does the radius remain contained?",
+      "signals": ["axis3:radius"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Contained",
+          "next": "A3_REFLECT",
+          "signals": ["axis3:radius:self", "axis3:contained"]
+        },
+        {
+          "id": "2",
+          "label": "Partly extended",
+          "next": "A3_REFLECT",
+          "signals": ["axis3:radius:mixed", "axis3:partial"]
+        },
+        {
+          "id": "3",
+          "label": "Extended to others",
+          "next": "A3_REFLECT",
+          "signals": ["axis3:radius:others", "axis3:extended"]
+        }
+      ]
+    },
+    "A3_REFLECT": {
+      "type": "reflection",
+      "axis": "axis3",
+      "axisName": "Radius",
+      "prompt": "Axis 3 Reflection: Confirm the radius signal before summary.",
+      "signals": ["axis3:reflection"],
+      "options": [
+        {
+          "id": "1",
+          "label": "Lock self radius",
+          "next": "SUMMARY",
+          "signals": ["axis3:radius:self", "axis3:reflection:lock"]
+        },
+        {
+          "id": "2",
+          "label": "Lock mixed radius",
+          "next": "SUMMARY",
+          "signals": ["axis3:radius:mixed", "axis3:reflection:lock"]
+        },
+        {
+          "id": "3",
+          "label": "Lock others radius",
+          "next": "SUMMARY",
+          "signals": ["axis3:radius:others", "axis3:reflection:lock"]
+        }
+      ]
+    },
+    "SUMMARY": {
+      "type": "summary",
+      "next": "END",
+      "signals": ["summary:compose"],
+      "summarySpec": {
+        "axisOrder": ["axis1", "axis2", "axis3"],
+        "inputs": [
+          "axis1:*",
+          "axis2:*",
+          "axis3:*"
+        ],
+        "output": "ordered-axis-signal-summary"
+      }
+    },
+    "END": {
+      "type": "terminal",
+      "result": {
+        "status": "complete",
+        "outcomeCode": "reflection_closed",
+        "reviewLevel": "none"
+      },
+      "signals": ["end"]
+    }
+  }
+}

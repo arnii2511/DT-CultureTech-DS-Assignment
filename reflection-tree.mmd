@@ -1,0 +1,117 @@
+flowchart TD
+  START["Deterministic start"]
+  A1_Q1["When something didn't go as planned today, what was your first reaction?"]
+  A1_Q2["What did you do next?"]
+  A1_Q3["What part of it still felt like yours to own?"]
+  A1_Q4["Looking back, what would you do differently next time?"]
+  A1_D1["Weigh the four control signals together and route by the dominant locus."]
+  A1_REF_INT["You stayed with what you could control. That kind of agency makes the next step smaller and clearer."]
+  A1_REF_BAL["You held your part and the situation at the same time. That balance keeps the reading honest."]
+  A1_REF_EXT["You noticed the pressure came from outside you. Even then, naming that boundary is still a choice."]
+  A1_BR["Agency is clearer now. Carry that control pattern into how you show up for the work itself."]
+  A2_Q1["When you showed up for this task, what was your stance?"]
+  A2_Q2["What did your actions look like after that?"]
+  A2_Q3["How did you respond when the work got harder?"]
+  A2_Q4["If you were honest about your role, what would you say?"]
+  A2_D1["Weigh the four effort signals against what Axis 1 already showed."]
+  A2_D2["Choose the dominant orientation after looking at the full effort pattern."]
+  A2_REF_CONTRIB["You showed up with something to give. Because Axis 1 already showed choice, this contribution reads as owned rather than forced."]
+  A2_REF_BAL["You gave some and held some back. That middle ground often appears when agency is present but guarded."]
+  A2_REF_ENT["You expected more than you gave. After Axis 1 showed control, this stands out as a mismatch in stance."]
+  A2_BR["The effort pattern is clear now. Bring that into how far the impact reaches."]
+  A3_Q1["Who did this mainly affect?"]
+  A3_Q2["After that, where did your attention go?"]
+  A3_Q3["How far did the impact spread?"]
+  A3_Q4["What did you want to protect most?"]
+  A3_D1["Weigh the four radius signals together and route by the dominant reach."]
+  A3_REF_SELF["You kept the impact close to yourself. With agency and effort already named, this keeps the radius narrow and protected."]
+  A3_REF_MIXED["You held your needs alongside others'. The earlier axes already showed choice and contribution, so the radius now looks shared and balanced."]
+  A3_REF_OTHER["You kept other people in view. With agency and contribution already in place, the radius moves outward with purpose."]
+  A3_BR["The radius is clear now. Carry agency and contribution into the final synthesis."]
+  SUMMARY["You showed agency, contribution, and radius in one connected pattern. The first axis shows how much control you kept, the second shows how much you gave, and the third shows how far it reached."]
+  END["Tree complete."]
+
+  START --> A1_Q1
+
+  A1_Q1 -->|1| A1_Q2
+  A1_Q1 -->|2| A1_Q2
+  A1_Q1 -->|3| A1_Q2
+
+  A1_Q2 -->|1| A1_Q3
+  A1_Q2 -->|2| A1_Q3
+  A1_Q2 -->|3| A1_Q3
+
+  A1_Q3 -->|1| A1_Q4
+  A1_Q3 -->|2| A1_Q4
+  A1_Q3 -->|3| A1_Q4
+
+  A1_Q4 -->|1| A1_D1
+  A1_Q4 -->|2| A1_D1
+  A1_Q4 -->|3| A1_D1
+
+  A1_D1 -->|axis1:internal| A1_REF_INT
+  A1_D1 -->|axis1:balanced| A1_REF_BAL
+  A1_D1 -->|axis1:external| A1_REF_EXT
+
+  A1_REF_INT --> A1_BR
+  A1_REF_BAL --> A1_BR
+  A1_REF_EXT --> A1_BR
+
+  A1_BR --> A2_Q1
+
+  A2_Q1 -->|1| A2_Q2
+  A2_Q1 -->|2| A2_Q2
+  A2_Q1 -->|3| A2_Q2
+
+  A2_Q2 -->|1| A2_Q3
+  A2_Q2 -->|2| A2_Q3
+  A2_Q2 -->|3| A2_Q3
+
+  A2_Q3 -->|1| A2_Q4
+  A2_Q3 -->|2| A2_Q4
+  A2_Q3 -->|3| A2_Q4
+
+  A2_Q4 -->|1| A2_D1
+  A2_Q4 -->|2| A2_D1
+  A2_Q4 -->|3| A2_D1
+
+  A2_D1 -->|axis2:contribution| A2_D2
+  A2_D1 -->|axis2:balanced| A2_D2
+  A2_D1 -->|axis2:entitlement| A2_D2
+
+  A2_D2 -->|axis2:contribution| A2_REF_CONTRIB
+  A2_D2 -->|axis2:balanced| A2_REF_BAL
+  A2_D2 -->|axis2:entitlement| A2_REF_ENT
+
+  A2_REF_CONTRIB --> A2_BR
+  A2_REF_BAL --> A2_BR
+  A2_REF_ENT --> A2_BR
+
+  A2_BR --> A3_Q1
+
+  A3_Q1 -->|1| A3_Q2
+  A3_Q1 -->|2| A3_Q2
+  A3_Q1 -->|3| A3_Q2
+
+  A3_Q2 -->|1| A3_Q3
+  A3_Q2 -->|2| A3_Q3
+  A3_Q2 -->|3| A3_Q3
+
+  A3_Q3 -->|1| A3_Q4
+  A3_Q3 -->|2| A3_Q4
+  A3_Q3 -->|3| A3_Q4
+
+  A3_Q4 -->|1| A3_D1
+  A3_Q4 -->|2| A3_D1
+  A3_Q4 -->|3| A3_D1
+
+  A3_D1 -->|axis3:self| A3_REF_SELF
+  A3_D1 -->|axis3:mixed| A3_REF_MIXED
+  A3_D1 -->|axis3:altrocentric| A3_REF_OTHER
+
+  A3_REF_SELF --> A3_BR
+  A3_REF_MIXED --> A3_BR
+  A3_REF_OTHER --> A3_BR
+
+  A3_BR --> SUMMARY
+  SUMMARY --> END
