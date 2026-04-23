@@ -30,5 +30,3 @@ Thumbs.db
 .idea/
 .vscode/
 
-# Local generated artifacts
-reflection-tree-*.png
