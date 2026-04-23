@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a deterministic, TSV-driven reflection tree that runs from the command line. It uses fixed node definitions, rule-based traversal, and stored signals to move through the tree without any runtime LLM calls or external APIs.
+This repository contains a deterministic, TSV-driven reflection tree that runs from the command line. It uses fixed node definitions, rule-based traversal, and stored signals to move through the tree without runtime LLM calls or external APIs.
 
 The system is designed to be auditable and repeatable:
 
@@ -14,9 +14,10 @@ The system is designed to be auditable and repeatable:
 ## Project Goals
 
 - Provide a deterministic reflection flow
-- Keep all logic in the TSV tree
+- Keep the tree logic in TSV form
 - Make traversal simple to run from the CLI
 - Preserve a clean, non-debug user experience
+- Include complete sample execution transcripts
 
 ## Requirements
 
@@ -93,11 +94,14 @@ If the input is empty or invalid, the CLI re-prompts instead of crashing.
 
 - `python_cli_agent.py` - CLI runner for the tree
 - `part1-tree.tsv` - active TSV source of truth for the tree
-- `deterministic-reflection-tree.tsv` - alternate tree export in the repo
+- `deterministic-reflection-tree.tsv` - alternate tree export
 - `deterministic-reflection-system.json` - JSON export of the system
 - `reflection-tree.mmd` - Mermaid diagram source
+- `reflection-tree-2026-04-23-154254.png` - rendered diagram preview
 - `validate-part1-tree.js` - TSV validator for the active tree
 - `validate-tree.js` - validator for the alternate tree export
+- `transcript-1.md` - sample execution transcript for an external/entitled/self-centric path
+- `transcript-2.md` - sample execution transcript for an internal/contributing/other-focused path
 
 ## Validation
 
@@ -116,6 +120,15 @@ The validator checks:
 - summary node synthesizes agency, contribution, and radius
 - all nodes are reachable
 - there are no circular loops
+
+## Sample Transcripts
+
+Two complete, step-by-step transcripts are included in the repository:
+
+- [`transcript-1.md`](./transcript-1.md)
+- [`transcript-2.md`](./transcript-2.md)
+
+Each transcript shows the full traversal, including question selection, recorded signal, decision routing, axis reflections, and the final summary.
 
 ## Example Output
 
